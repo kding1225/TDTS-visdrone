@@ -8,7 +8,7 @@ This project hosts the code for implementing the TDTS algorithm for object detec
 
 The full paper is available at: [https://doi.org/10.1109/LGRS.2020.3035844](https://doi.org/10.1109/LGRS.2020.3035844). 
 
-<img src="figures/overall.png" width="90%" height="90%" align="center"/>
+<img src="figures/overall.png" width="70%" height="70%" align="center"/>
 
 ## Highlights
 - **General:** TDTS is a general method to exploit the spatial sparsity of aerial images for improving inference speed.
