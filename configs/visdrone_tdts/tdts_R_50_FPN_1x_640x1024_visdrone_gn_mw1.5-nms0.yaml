@@ -1,0 +1,63 @@
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRCNN"
+  WEIGHT: "catalog://ImageNetPretrained/MSRA/R-50"
+  RPN_ONLY: True
+  TDTS_VISDRONE_ON: True
+  BACKBONE:
+    CONV_BODY: "R-50-FPN-234"
+    FREEZE_CONV_BODY_AT: 2
+  RESNETS:
+    BACKBONE_OUT_CHANNELS: 128
+  RETINANET:
+    USE_C5: False # use P5 instead of C5
+  TDTS_VISDRONE:
+    # normalizing the regression targets with FPN strides
+    NORM_REG_TARGETS: True
+    # positioning centerness on the regress branch.
+    # Please refer to https://github.com/tianzhi0549/FCOS/issues/89#issuecomment-516877042
+    CENTERNESS_ON_REG: True
+    # using center sampling and GIoU.
+    # Please refer to https://github.com/yqyao/FCOS_PLUS
+    CENTER_SAMPLING_RADIUS: 1.5
+    IOU_LOSS_TYPE: "giou"
+    NUM_CONVS: 4
+
+    # added
+    LOSS_GAUSSIAN_RADIUS: 2
+    FEATURE_MAP_MARGIN: 10
+    NORM_TYPE: 'gn'
+    PROP_APPLY_NMS: False
+    PROP_START_POINT: 5000
+    PROP_END_POINT: 15000
+    PROP_MAX_WEIGHT: 1.5
+    PROP_REDUCTION: 2
+    TEST_PROP_EXPAND_SIZE: 11
+    TEST_PROP_THR: 0.1
+    TEST_CONV_MODE: 'dense'
+    FPN_STRIDES: [4, 8, 16]
+    OBJECT_SIZES_OF_INTEREST: [[-1, 32], [32, 64], [64, 100000000]]
+DATASETS:
+  TRAIN: ("visdrone_2019_train", )
+  TEST: ("visdrone_2019_val", )
+INPUT:
+  MIN_SIZE_RANGE_TRAIN: (512, 640)
+  MAX_SIZE_TRAIN: 1024
+  MIN_SIZE_TEST: 640
+  MAX_SIZE_TEST: 1024
+  ADD_EXTRA_AUG: False
+DATALOADER:
+  SIZE_DIVISIBILITY: 32
+SOLVER:
+  BASE_LR: 0.005
+  WEIGHT_DECAY: 0.0001
+  STEPS: (60000, 80000)
+  MAX_ITER: 90000
+  IMS_PER_BATCH: 16
+  WARMUP_METHOD: "constant"
+TEST:
+  DETECTIONS_PER_IMG: 500
+  IMS_PER_BATCH: 8
+  FUSE_BN: True
+VISUALIZE:
+  ENV: 'tdts_R_50_FPN_1x_640x1024_visdrone_gn_mw1.5-nms0'
+  PERIOD: 1000
