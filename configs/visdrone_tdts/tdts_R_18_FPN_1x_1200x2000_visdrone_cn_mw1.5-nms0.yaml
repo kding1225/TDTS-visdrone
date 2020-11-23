@@ -1,0 +1,63 @@
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRCNN"
+  WEIGHT: "https://download.pytorch.org/models/resnet18-5c106cde.pth"
+  RPN_ONLY: True
+  TDTS_VISDRONE_ON: True
+  BACKBONE:
+    CONV_BODY: "R-18-FPN-234"
+    FREEZE_CONV_BODY_AT: 2
+  RESNETS:
+    BACKBONE_OUT_CHANNELS: 128
+  RETINANET:
+    USE_C5: False # use P5 instead of C5
+  TDTS_VISDRONE:
+    # normalizing the regression targets with FPN strides
+    NORM_REG_TARGETS: True
+    # positioning centerness on the regress branch.
+    # Please refer to https://github.com/tianzhi0549/FCOS/issues/89#issuecomment-516877042
+    CENTERNESS_ON_REG: True
+    # using center sampling and GIoU.
+    # Please refer to https://github.com/yqyao/FCOS_PLUS
+    CENTER_SAMPLING_RADIUS: 1.5
+    IOU_LOSS_TYPE: "giou"
+    NUM_CONVS: 4
+
+    # added
+    LOSS_GAUSSIAN_RADIUS: 2
+    FEATURE_MAP_MARGIN: 10
+    NORM_TYPE: 'cn'
+    PROP_APPLY_NMS: False
+    PROP_START_POINT: 60000
+    PROP_END_POINT: 100000
+    PROP_MAX_WEIGHT: 1.5
+    PROP_REDUCTION: 2
+    TEST_PROP_EXPAND_SIZE: 9
+    TEST_PROP_THR: 0.3
+    TEST_CONV_MODE: 'sparse'
+    FPN_STRIDES: [4, 8, 16]
+    OBJECT_SIZES_OF_INTEREST: [[-1, 48], [48, 96], [96, 100000000]]
+DATASETS:
+  TRAIN: ("visdrone_2019_train", )
+  TEST: ("visdrone_2019_val", )
+INPUT:
+  MIN_SIZE_RANGE_TRAIN: (960, 1200)
+  MAX_SIZE_TRAIN: 2000
+  MIN_SIZE_TEST: 1200
+  MAX_SIZE_TEST: 2000
+  ADD_EXTRA_AUG: False
+DATALOADER:
+  SIZE_DIVISIBILITY: 32
+SOLVER:
+  BASE_LR: 0.00125
+  WEIGHT_DECAY: 0.0001
+  STEPS: (240000, 320000)
+  MAX_ITER: 360000
+  IMS_PER_BATCH: 4
+  WARMUP_METHOD: "constant"
+TEST:
+  DETECTIONS_PER_IMG: 500
+  IMS_PER_BATCH: 8
+  FUSE_BN: True
+VISUALIZE:
+  ENV: 'tdts_R_18_FPN_1x_1200x2000_visdrone_cn_mw1.5-nms0'
+  PERIOD: 1000
