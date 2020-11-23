@@ -49,9 +49,9 @@ Model | Backbone | Train Size| FPS@1 | FPS@8 | AP | AP50 | AP75 | Link
 FCOS        | ResNet-18 | [640,800]x1333 | 34.2 | 30.7 | 22.36 | 41.14 | 22.09 | [ajpb](https://pan.baidu.com/s/1CQSRA5DrHeOkS9U3QH2VFA)
 FCOS        | ResNet-50 | [512,640]x1024 | 34.7 | 39.2 | 20.55 | 38.35 | 20.23 | [0nbm](https://pan.baidu.com/s/13z966uFkfrzJZ15VI6duyg)
 TDTS_dense  | ResNet-18 | [640,800]x1333 | 30.3 | 25.1 | 23.00 | 41.98 | 22.93 | [wq59](https://pan.baidu.com/s/1y_2TquarFuKqG4MgKxJE3Q)
-TDTS_sparse | ResNet-18 | [640,800]x1333 | 40.0 | 51.1 | 22.68 | 41.22 | 22.70 | [wq59](https://pan.baidu.com/s/1y_2TquarFuKqG4MgKxJE3Q)
+TDTS_sparse | ResNet-18 | [640,800]x1333 | 40.9 | 51.6 | 22.68 | 41.22 | 22.70 | [wq59](https://pan.baidu.com/s/1y_2TquarFuKqG4MgKxJE3Q)
 TDTS_dense  | ResNet-50 | [512,640]x1024 | 33.2 | 34.0 | 21.91 | 40.25 | 21.79 | [krbk](https://pan.baidu.com/s/1X2-gEfmbQdMk8OiMYCE6cg)
-TDTS_sparse | ResNet-50 | [512,640]x1024 | 35.8 | 47.9 | 21.71 | 39.81 | 21.63 | [krbk](https://pan.baidu.com/s/1X2-gEfmbQdMk8OiMYCE6cg)
+TDTS_sparse | ResNet-50 | [512,640]x1024 | 37.6 | 48.6 | 21.71 | 39.81 | 21.63 | [krbk](https://pan.baidu.com/s/1X2-gEfmbQdMk8OiMYCE6cg)
 
 * The FPS is tested on a RTX Titan GPU card.
 
