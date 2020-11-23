@@ -15,6 +15,7 @@ The full paper is available at: [https://doi.org/10.1109/LGRS.2020.3035844](http
 - **Flop counter:** Enable to count the model's flops.
 
 ## Updates
+   - 2020/11/23: improve column norm code, slightly faster
    - 2020/11/19: first commit
 
 ## Installation
@@ -26,8 +27,8 @@ The inference command line on VisDrone-2019 val split:
 
     python tools/test_net.py \
         --config-file configs/visdrone_tdts/tdts_R_18_FPN_1x_800x1333_visdrone_cn_mw1.5-nms0.yaml \
-        MODEL.WEIGHT tdts_R_18_FPN_1x_800x1333_visdrone_cn_mw1.5-nms0.pth \
-        TEST.IMS_PER_BATCH 4
+        MODEL.WEIGHT models/tdts_R_18_FPN_1x_800x1333_visdrone_cn_mw1.5-nms0.pth \
+        TEST.IMS_PER_BATCH 1
         
 ## Train
 To train a new model on VisDrone-2019 train split, run:
