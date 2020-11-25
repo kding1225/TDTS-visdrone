@@ -15,6 +15,7 @@ The full paper is available at: [https://doi.org/10.1109/LGRS.2020.3035844](http
 - **Flop counter:** Enable to count the model's flops.
 
 ## Updates
+   - 2020/11/25: upgrade to pytorch1.6
    - 2020/11/23: improve column norm code, slightly faster
    - 2020/11/19: first commit
 
